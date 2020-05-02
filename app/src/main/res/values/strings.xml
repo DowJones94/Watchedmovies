@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Watched movies</string>
+    <string name="watched_movies_button">Просмотренные фильмы</string>
+    <string name="add_movie_button">Добавить фильм</string>
+</resources>
