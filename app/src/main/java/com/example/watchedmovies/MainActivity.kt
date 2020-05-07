@@ -13,6 +13,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        watched_movies_button.setOnClickListener { Toast.makeText(applicationContext, "Добавлено", Toast.LENGTH_SHORT).show() }
+        btnAddMovie.setOnClickListener { Toast.makeText(applicationContext, "Добавлено", Toast.LENGTH_SHORT).show() }
     }
 }

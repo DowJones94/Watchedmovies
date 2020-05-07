@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Watched movies</string>
-    <string name="watched_movies_button">Просмотренные фильмы</string>
-    <string name="add_movie_button">Добавить фильм</string>
-    <string name="main_text">Тестовое поле</string>
+    <string name="btn_Add_Movie">Добавить фильм</string>
+    <string name="et_movie_title">Название фильма</string>
+    <string name="et_like">Что понравилось?</string>
+    <string name="et_dislike">Что не понравилось?</string>
 </resources>
