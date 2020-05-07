@@ -10,27 +10,23 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/et_movie_title"
-        android:inputType="textPersonName" />
+        android:singleLine="true"/>
 
     <EditText
         android:id="@+id/etLike"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:gravity="start|top"
         android:hint="@string/et_like"
-        android:inputType="textMultiLine"
-        android:lines="3" />
+        android:maxLines="3" />
 
     <EditText
         android:id="@+id/etDislike"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:gravity="start|top"
         android:hint="@string/et_dislike"
-        android:inputType="textMultiLine"
-        android:lines="3" />
+        android:maxLines="3" />
 
     <Button
         android:id="@+id/btnAddMovie"
