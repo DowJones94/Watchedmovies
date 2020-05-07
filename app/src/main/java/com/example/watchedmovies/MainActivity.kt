@@ -5,20 +5,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        //Поиск вьюх
-        val testMainTextView: TextView = testMainTextView
-        val watchedMovieButton: Button = watched_movies_button
-        val addMovieButton: Button = add_movie_button
-
-        addMovieButton.setOnClickListener { testMainTextView.text = "Добавить" }
-        watchedMovieButton.setOnClickListener { testMainTextView.text = "Просмотренные" }
+        watched_movies_button.setOnClickListener { Toast.makeText(applicationContext, "Добавлено", Toast.LENGTH_SHORT).show() }
     }
 }
