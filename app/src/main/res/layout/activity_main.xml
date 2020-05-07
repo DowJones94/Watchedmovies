@@ -10,8 +10,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/et_movie_title"
-        android:inputType="textPersonName"
-        android:singleLine="false" />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/etLike"
