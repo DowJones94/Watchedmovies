@@ -8,7 +8,6 @@
         android:id="@+id/etMovieTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="@string/et_movie_title"
         android:inputType="text" />
 
@@ -16,7 +15,6 @@
         android:id="@+id/etLike"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="@string/et_like"
         android:maxLines="3" />
 
@@ -24,7 +22,6 @@
         android:id="@+id/etDislike"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="@string/et_dislike"
         android:maxLines="3" />
 
