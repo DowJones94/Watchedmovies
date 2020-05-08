@@ -4,4 +4,5 @@
     <string name="et_movie_title">Название фильма</string>
     <string name="et_like">Что понравилось?</string>
     <string name="et_dislike">Что не понравилось?</string>
+    <string name="title_activity_movies_feed">MoviesFeed</string>
 </resources>
