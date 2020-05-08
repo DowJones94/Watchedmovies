@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 import kotlinx.android.synthetic.main.activity_movies_feed.*
 
-class MoviesFeed : AppCompatActivity(R.layout.activity_movies_feed) {
+class MoviesFeedActivity : AppCompatActivity(R.layout.activity_movies_feed) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
