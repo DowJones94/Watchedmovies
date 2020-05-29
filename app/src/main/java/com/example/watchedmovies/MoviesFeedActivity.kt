@@ -7,11 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 import kotlinx.android.synthetic.main.activity_movies_feed.*
 
-const val REQUEST_CODE_MOVIE_EDIT: Int = 1;
+const val REQUEST_CODE_MOVIE_EDIT: Int = 1
 
 class MoviesFeedActivity : AppCompatActivity(R.layout.activity_movies_feed) {
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,5 +19,4 @@ class MoviesFeedActivity : AppCompatActivity(R.layout.activity_movies_feed) {
             startActivityForResult(intent, REQUEST_CODE_MOVIE_EDIT)
         }
     }
-
 }

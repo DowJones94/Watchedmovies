@@ -2,18 +2,35 @@ package com.example.watchedmovies
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_editor.*
 
-class MovieinfoEditorActivity : AppCompatActivity(R.layout.activity_main) {
+class MovieinfoEditorActivity : AppCompatActivity(R.layout.activity_editor) {
+
+    data class Movie(
+        val title: String,
+        val positiveComment: String,
+        val negativeComment: String
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val toast = Toast.makeText(applicationContext, "Добавлено", Toast.LENGTH_SHORT)
-        btnAddMovie.setOnClickListener { toast.show() }
+        btnAddMovie.setOnClickListener { checkEditText() }
+    }
+
+    private fun checkEditText(){
+
+        if (etMovieTitle.text.trim().isEmpty()) {
+            etMovieTitle.error = "Обязательное поле"
+        }
+
+        if (etLike.text.trim().isEmpty()) {
+            etLike.error = "Обязательное поле"
+        }
+
+        if (etDislike.text.trim().isEmpty()) {
+            etDislike.error = "Обязательное поле"
+        }
+
     }
 }
