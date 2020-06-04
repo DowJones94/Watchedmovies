@@ -7,6 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".MoviesFeedActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/movie_recycler_view"
+        app:layoutManager="LinearLayoutManager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

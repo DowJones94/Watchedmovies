@@ -46,17 +46,17 @@ class MovieinfoEditorActivity : AppCompatActivity(R.layout.activity_editor) {
         var bIsFilled = true
 
         if (etMovieTitle.text.trim().isEmpty()) {
-            etMovieTitle.error = "Обязательное поле"
+            etMovieTitle.error = resources.getString(R.string.et_required_error)
             bIsFilled = false
         }
 
         if (etLike.text.trim().isEmpty()) {
-            etLike.error = "Обязательное поле"
+            etLike.error = resources.getString(R.string.et_required_error)
             bIsFilled = false
         }
 
         if (etDislike.text.trim().isEmpty()) {
-            etDislike.error = "Обязательное поле"
+            etDislike.error = resources.getString(R.string.et_required_error)
             bIsFilled = false
         }
 
