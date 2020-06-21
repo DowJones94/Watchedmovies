@@ -27,9 +27,9 @@ class MovieinfoEditorActivity : AppCompatActivity(R.layout.activity_editor) {
                     etDislike.text.trim().toString()
                 )
                 val intent = Intent()
-                intent.putExtra("MOVIE_TITLE", movie.title)
-                intent.putExtra("MOVIE_POSITIVE_COMMENT", movie.positiveComment)
-                intent.putExtra("MOVIE_NEGATIVE_COMMENT", movie.negativeComment)
+                intent.putExtra("TITLE", movie.title)
+                intent.putExtra("POSITIVE", movie.positiveComment)
+                intent.putExtra("NEGATIVE", movie.negativeComment)
                 setResult(Activity.RESULT_OK, intent)
                 finish()
             }
