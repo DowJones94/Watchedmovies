@@ -3,7 +3,9 @@ package com.example.watchedmovies
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.Preference
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
@@ -13,11 +15,13 @@ import java.lang.reflect.Type
 
 
 const val MOVIE_EDIT: Int = 1
+const val KEY_MOVIES = "MOVIES"
 
 class MoviesFeedActivity : AppCompatActivity(R.layout.activity_movies_feed), MovieAdapter.Callback {
 
     //Лист из фильмов (data class Movie из MovieinfoEditorActivity)
-    private var movies : ArrayList<MovieinfoEditorActivity.Movie> = arrayListOf()
+    private val movies : ArrayList<MovieinfoEditorActivity.Movie> = arrayListOf()
+    private lateinit var sPref : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,34 +43,37 @@ class MoviesFeedActivity : AppCompatActivity(R.layout.activity_movies_feed), Mov
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == MOVIE_EDIT){
-            if (data != null) {
+            data?.let {
                 movies.add(MovieinfoEditorActivity.Movie(data.getStringExtra("TITLE"), data.getStringExtra("POSITIVE"), data.getStringExtra("NEGATIVE")))
+                movie_recycler_view.adapter?.notifyDataSetChanged() //уведомляем адаптер об изменении списка
                 saveMoviesData() //Сохраняем данные
             }
         }
     }
 
     private fun loadMoviesData(){
-        val sPref = getPreferences(Context.MODE_PRIVATE)
-        val json = sPref.getString("MOVIES", null)
+        sPref = getPreferences(Context.MODE_PRIVATE)
+        val json = sPref.getString(KEY_MOVIES, null)
         Log.i("ITEM_MOVIE", "Загружено: $json")
-        if (json != null) {
+        json?.let { moviesJson->
             val type: Type = object : TypeToken<ArrayList<MovieinfoEditorActivity.Movie>>() {}.type
-            movies = Gson().fromJson(json, type)
+            val localMoviesList : ArrayList<MovieinfoEditorActivity.Movie> = Gson().fromJson(moviesJson, type)
+            movies.clear() //Очищаем список перед добавлением в него восстановленных элементов
+            movies.addAll(localMoviesList)
         }
     }
 
     private fun saveMoviesData(){
-        val json: String = Gson().toJson(movies)
+        sPref = getPreferences(Context.MODE_PRIVATE)
+        val json = Gson().toJson(movies)
         Log.i("ITEM_MOVIE", "Сохранено: $json")
-        val sPref = getPreferences(Context.MODE_PRIVATE)
-        sPref.edit().putString("MOVIES", json).apply()
+        sPref.edit().putString(KEY_MOVIES, json).apply()
     }
 
     private fun clearMoviesData(){
         Log.i("ITEM_MOVIE", "Список очищен")
-        val sPref = getPreferences(Context.MODE_PRIVATE)
-        sPref.edit().putString("MOVIES", null).apply()
+        sPref = getPreferences(Context.MODE_PRIVATE)
+        sPref.edit().remove(KEY_MOVIES).apply()
         movies.clear()
     }
 
