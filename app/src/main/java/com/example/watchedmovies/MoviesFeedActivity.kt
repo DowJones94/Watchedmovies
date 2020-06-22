@@ -26,8 +26,8 @@ class MoviesFeedActivity : AppCompatActivity(R.layout.activity_movies_feed), Mov
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //Загружаем данные для элементов списка
-        loadMoviesData()
+        sPref = getPreferences(Context.MODE_PRIVATE) //Инициализаруем Shared Preferences
+        loadMoviesData() //Загружаем данные для элементов списка
 
         //Привязываем адаптер к RecyclerView и передаем данные в адаптер
         movie_recycler_view.adapter = MovieAdapter(movies, this)
@@ -52,7 +52,6 @@ class MoviesFeedActivity : AppCompatActivity(R.layout.activity_movies_feed), Mov
     }
 
     private fun loadMoviesData(){
-        sPref = getPreferences(Context.MODE_PRIVATE)
         val json = sPref.getString(KEY_MOVIES, null)
         Log.i("ITEM_MOVIE", "Загружено: $json")
         json?.let { moviesJson->
@@ -64,7 +63,6 @@ class MoviesFeedActivity : AppCompatActivity(R.layout.activity_movies_feed), Mov
     }
 
     private fun saveMoviesData(){
-        sPref = getPreferences(Context.MODE_PRIVATE)
         val json = Gson().toJson(movies)
         Log.i("ITEM_MOVIE", "Сохранено: $json")
         sPref.edit().putString(KEY_MOVIES, json).apply()
@@ -72,7 +70,6 @@ class MoviesFeedActivity : AppCompatActivity(R.layout.activity_movies_feed), Mov
 
     private fun clearMoviesData(){
         Log.i("ITEM_MOVIE", "Список очищен")
-        sPref = getPreferences(Context.MODE_PRIVATE)
         sPref.edit().remove(KEY_MOVIES).apply()
         movies.clear()
     }
