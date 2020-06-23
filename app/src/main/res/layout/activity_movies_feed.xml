@@ -8,7 +8,7 @@
     tools:context=".MoviesFeedActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/movie_recycler_view"
+        android:id="@+id/rvMovie"
         app:layoutManager="LinearLayoutManager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

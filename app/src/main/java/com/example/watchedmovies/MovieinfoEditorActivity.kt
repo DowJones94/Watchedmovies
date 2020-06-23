@@ -10,22 +10,12 @@ import kotlinx.android.synthetic.main.activity_editor.*
 
 class MovieinfoEditorActivity : AppCompatActivity(R.layout.activity_editor) {
 
-    data class Movie(
-        var title: String,
-        var positiveComment: String,
-        var negativeComment: String
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         btnAddMovie.setOnClickListener {
             if (validateFields()) {
-                val movie = Movie(
-                    etMovieTitle.text.trim().toString(),
-                    etLike.text.trim().toString(),
-                    etDislike.text.trim().toString()
-                )
+                val movie = Movie(etMovieTitle.text.trim().toString(), etLike.text.trim().toString(), etDislike.text.trim().toString())
                 val intent = Intent()
                 intent.putExtra("TITLE", movie.title)
                 intent.putExtra("POSITIVE", movie.positiveComment)
