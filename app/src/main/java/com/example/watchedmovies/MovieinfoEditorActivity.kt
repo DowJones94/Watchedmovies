@@ -1,5 +1,6 @@
 package com.example.watchedmovies
 
+import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -10,8 +11,13 @@ import kotlinx.android.synthetic.main.activity_editor.*
 
 class MovieinfoEditorActivity : AppCompatActivity(R.layout.activity_editor) {
 
+    private lateinit var animator : ValueAnimator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        animator = ValueAnimator.ofFloat(0.0F, 1.0F).also{ it.addUpdateListener {  } }
+        animator.start()
 
         btnAddMovie.setOnClickListener {
             if (validateFields()) {
