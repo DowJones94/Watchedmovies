@@ -33,4 +33,9 @@
         android:layout_gravity="center_horizontal"
         android:paddingHorizontal="30dp"
         android:text="@string/btn_Add_Movie" />
+
+    <com.example.watchedmovies.TempView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
