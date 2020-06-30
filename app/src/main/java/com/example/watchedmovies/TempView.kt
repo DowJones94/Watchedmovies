@@ -1,15 +1,15 @@
 package com.example.watchedmovies
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.Choreographer
 import android.view.View
+import android.view.animation.AccelerateInterpolator
 import androidx.core.content.res.use
-import com.example.watchedmovies.R
 import com.example.watchedmovies.extensions.dp
-import com.example.watchedmovies.extensions.float
 import com.example.watchedmovies.extensions.rgb
 
 class TempView @JvmOverloads constructor(
@@ -51,12 +51,27 @@ class TempView @JvmOverloads constructor(
 //        Choreographer.getInstance().postFrameCallback(this) //Запрос следующего кадра (вызов doFrame)
 //    }
 
+    private var animVal = 0F
+    private val animator = ValueAnimator.ofFloat(0.0F, 1.0F).also {
+        it.duration = 450
+        it.interpolator = AccelerateInterpolator()
+        it.repeatMode = ValueAnimator.REVERSE
+        it.repeatCount = ValueAnimator.INFINITE
+        it.addUpdateListener {
+            animVal = it.animatedValue as Float
+        }
+        it.start()
+    }
+
     override fun onDraw(canvas: Canvas) {
         linePaint.let {
             it.style = Paint.Style.STROKE
             it.strokeWidth = 2F.dp
             it.color = 0x6200EE.rgb
         }
-        canvas.drawCircle(width / 2f,height / 2f, 40F.dp, linePaint)
+        canvas.drawCircle(width / 2f,height / 2f, (50F - 10F*animVal).dp, linePaint)
+        linePaint.style = Paint.Style.FILL
+        canvas.drawCircle(width / 2f,height / 2f, (35F*animVal).dp, linePaint)
+        invalidate()
     }
 }
