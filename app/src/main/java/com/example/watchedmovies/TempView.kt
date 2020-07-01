@@ -34,6 +34,18 @@ class TempView @JvmOverloads constructor(
             linePaint.color = lineColor
         }
 
+    private var animVal = 0F
+    private val animator = ValueAnimator.ofFloat(0.0F, 1.0F).also {
+        it.duration = 450
+        it.interpolator = AccelerateInterpolator()
+        it.repeatMode = ValueAnimator.REVERSE
+        it.repeatCount = ValueAnimator.INFINITE
+        it.addUpdateListener { anim ->
+            animVal = anim.animatedValue as Float
+            invalidate()
+        }
+    }
+
     init {
         getContext().obtainStyledAttributes(attrs, R.styleable.TempView, defStyleAttr, defStyleRes).use {
             lineColor = it.getColor(
@@ -41,6 +53,7 @@ class TempView @JvmOverloads constructor(
                 DEFAULT_LINE_COLOR
             )
         }
+        animator.start()
         //Раскомментишь тогда, когда будем пользоваться анимациями
         //        Choreographer.getInstance().postFrameCallback(this) //Запрос следующего кадра (вызов doFrame)
     }
@@ -51,18 +64,6 @@ class TempView @JvmOverloads constructor(
 //        Choreographer.getInstance().postFrameCallback(this) //Запрос следующего кадра (вызов doFrame)
 //    }
 
-    private var animVal = 0F
-    private val animator = ValueAnimator.ofFloat(0.0F, 1.0F).also {
-        it.duration = 450
-        it.interpolator = AccelerateInterpolator()
-        it.repeatMode = ValueAnimator.REVERSE
-        it.repeatCount = ValueAnimator.INFINITE
-        it.addUpdateListener {
-            animVal = it.animatedValue as Float
-        }
-        it.start()
-    }
-
     override fun onDraw(canvas: Canvas) {
         linePaint.let {
             it.style = Paint.Style.STROKE
@@ -72,6 +73,5 @@ class TempView @JvmOverloads constructor(
         canvas.drawCircle(width / 2f,height / 2f, (50F - 10F*animVal).dp, linePaint)
         linePaint.style = Paint.Style.FILL
         canvas.drawCircle(width / 2f,height / 2f, (35F*animVal).dp, linePaint)
-        invalidate()
     }
 }
