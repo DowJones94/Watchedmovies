@@ -2,7 +2,9 @@
 <resources>
 
     <declare-styleable name="TempView">
-        <attr name="lineColor" format="color" />
+        <attr name="ringColor" format="color" />
+        <attr name="ringWidth" format="dimension" />    <!--dp sp и т.п.-->
+        <attr name="circleColor" format="color" />
     </declare-styleable>
 
 </resources>

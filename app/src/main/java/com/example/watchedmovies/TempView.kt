@@ -5,12 +5,12 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
-import android.view.Choreographer
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import androidx.core.content.res.use
+import com.example.watchedmovies.extensions.argb
+
 import com.example.watchedmovies.extensions.dp
-import com.example.watchedmovies.extensions.rgb
 
 class TempView @JvmOverloads constructor(
     context: Context,
@@ -20,18 +20,35 @@ class TempView @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr, defStyleRes)/*, Choreographer.FrameCallback*/ {
 
     companion object {
-        val DEFAULT_LINE_COLOR = 0xFFFFFF.rgb // white rgb
+        val DEFAULT_COLOR = 0xFFFF0000.argb // red argb
+        val DEFAULT_WIDTH = 1F.dp // 1 dp
     }
 
     private val emptyPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val linePaint = Paint(emptyPaint).also {
-        it.color = lineColor
+    private val circlePaint = Paint(emptyPaint).also {
+        it.color = circleColor
+        it.style = Paint.Style.FILL
+    }
+    private val ringPaint = Paint(emptyPaint).also {
+        it.color = ringColor
+        it.strokeWidth = ringWidth
+        it.style = Paint.Style.STROKE
     }
 
-    private var lineColor = DEFAULT_LINE_COLOR
+    private var circleColor = DEFAULT_COLOR
         set(value) {
             field = value
-            linePaint.color = lineColor
+            circlePaint.color = circleColor
+        }
+    private var ringColor = DEFAULT_COLOR
+        set(value) {
+            field = value
+            ringPaint.color = ringColor
+        }
+    private var ringWidth = DEFAULT_WIDTH
+        set(value) {
+            field = value
+            ringPaint.strokeWidth = ringWidth
         }
 
     private var animVal = 0F
@@ -48,9 +65,17 @@ class TempView @JvmOverloads constructor(
 
     init {
         getContext().obtainStyledAttributes(attrs, R.styleable.TempView, defStyleAttr, defStyleRes).use {
-            lineColor = it.getColor(
-                R.styleable.TempView_lineColor,
-                DEFAULT_LINE_COLOR
+            circleColor = it.getColor(
+                R.styleable.TempView_circleColor,
+                DEFAULT_COLOR
+            )
+            ringColor = it.getColor(
+                R.styleable.TempView_ringColor,
+                DEFAULT_COLOR
+            )
+            ringWidth = it.getDimension(
+                R.styleable.TempView_ringWidth,
+                DEFAULT_WIDTH
             )
         }
         animator.start()
@@ -65,13 +90,7 @@ class TempView @JvmOverloads constructor(
 //    }
 
     override fun onDraw(canvas: Canvas) {
-        linePaint.let {
-            it.style = Paint.Style.STROKE
-            it.strokeWidth = 2F.dp
-            it.color = 0x6200EE.rgb
-        }
-        canvas.drawCircle(width / 2f,height / 2f, (50F - 10F*animVal).dp, linePaint)
-        linePaint.style = Paint.Style.FILL
-        canvas.drawCircle(width / 2f,height / 2f, (35F*animVal).dp, linePaint)
+        canvas.drawCircle(width / 2f,height / 2f, ((50F - 10F*animVal).dp + ringWidth/2), ringPaint)
+        canvas.drawCircle(width / 2f,height / 2f, (35F*animVal).dp, circlePaint)
     }
 }

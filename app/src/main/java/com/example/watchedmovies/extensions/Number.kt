@@ -6,6 +6,8 @@ import com.example.watchedmovies.App
 // number to color conversion
 inline val Int.argb
     get() = this
+inline val Long.argb
+    get() = this.int
 inline val Int.rgb
     get() = (this + 0xFF000000).int
 
