@@ -7,4 +7,9 @@
         <attr name="circleColor" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="MyTextView">
+        <attr name="backColor" format="color" />
+        <attr name="borderRadius" format="dimension" />
+    </declare-styleable>
+
 </resources>
