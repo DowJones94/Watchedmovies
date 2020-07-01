@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
-import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.use
 import com.example.watchedmovies.extensions.argb
 import com.example.watchedmovies.extensions.dp
@@ -12,9 +12,8 @@ import com.example.watchedmovies.extensions.dp
 class MyTextView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0,
-    defStyleRes: Int = 0
-) : TextView(context, attrs, defStyleAttr, defStyleRes)/*, Choreographer.FrameCallback*/ {
+    defStyleAttr: Int = 0
+) : AppCompatTextView(context, attrs, defStyleAttr)/*, Choreographer.FrameCallback*/ {
 
     companion object {
         val DEFAULT_COLOR = 0xFFFF0000.argb // red argb
@@ -35,7 +34,7 @@ class MyTextView @JvmOverloads constructor(
     private var borderRadius = DEFAULT_BORDER_RADIUS
 
     init {
-        getContext().obtainStyledAttributes(attrs, R.styleable.MyTextView, defStyleAttr, defStyleRes).use {
+        getContext().obtainStyledAttributes(attrs, R.styleable.MyTextView, defStyleAttr, 0).use {
             backColor = it.getColor(
                 R.styleable.MyTextView_backColor,
                 DEFAULT_COLOR
