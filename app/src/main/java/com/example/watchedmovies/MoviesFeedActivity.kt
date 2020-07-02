@@ -36,6 +36,11 @@ class MoviesFeedActivity : AppCompatActivity(R.layout.activity_movies_feed), Mov
             val intent = Intent(this, MovieinfoEditorActivity::class.java)
             startActivityForResult(intent, MOVIE_EDIT)
         }
+
+        btnTestActivity.setOnClickListener {
+            val intent = Intent(this, TestActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     //Выводим и сохраняем данные

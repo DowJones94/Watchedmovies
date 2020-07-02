@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/testFrameLayout">
+
+    <com.example.watchedmovies.MyTextView
+        android:id="@+id/myTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="5dp"
+        android:layout_margin="8dp"
+        android:layout_gravity="center"
+        android:text="MyTextView"
+        android:textColor="#009688"
+        android:textSize="20sp"
+        app:backColor="#CDDC39"
+        app:borderRadius="10dp"/>
+
+</FrameLayout>

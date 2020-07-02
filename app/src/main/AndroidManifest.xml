@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".TestActivity"></activity>
         <activity
             android:name=".MoviesFeedActivity"
             android:label="@string/title_activity_movies_feed">
@@ -19,9 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MovieinfoEditorActivity">
-
-        </activity>
+        <activity android:name=".MovieinfoEditorActivity"></activity>
     </application>
 
 </manifest>
