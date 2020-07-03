@@ -16,9 +16,9 @@
         android:layout_margin="8dp"
         android:layout_gravity="center"
         android:text="MyTextView"
-        android:textColor="#009688"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
-        app:backColor="#CDDC39"
+        app:backColor="@color/colorPrimary"
         app:borderRadius="10dp"/>
 
 </FrameLayout>
